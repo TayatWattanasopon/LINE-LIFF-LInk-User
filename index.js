@@ -82,15 +82,15 @@ async function main() {
 async function getUserProfile() {
   const profile = await liff.getProfile();
   pictureUrl.src = profile.pictureUrl;
-  userId.innerHTML = '<b>userId:</b> ' + profile.userId;
-  statusMessage.innerHTML = '<b>statusMessage:</b> ' + profile.statusMessage;
-  displayName.innerHTML = '<b>displayName:</b> ' + profile.displayName;
-  email.innerHTML = '<b>email:</b> ' + liff.getDecodedIDToken().email;
+  userId.innerHTML = '<b>User ID:</b> ' + profile.userId;
+  // statusMessage.innerHTML = '<b>statusMessage:</b> ' + profile.statusMessage;
+  displayName.innerHTML = '<b>Display Name:</b> ' + profile.displayName;
+  email.innerHTML = '<b>Email:</b> ' + liff.getDecodedIDToken().email;
 }
 
 main();
 
-async function sendMsg() {
+async function sendMsg(MessageType) {
   if (
     liff.getContext().type !== 'none' &&
     liff.getContext().type !== 'external'
@@ -98,7 +98,7 @@ async function sendMsg() {
     await liff.sendMessages([
       {
         type: 'text',
-        text: 'This message was sent by sendMessages()',
+        text: MessageType,
       },
     ]);
     // await liff.sendMessages(lineResponseMessageS);
@@ -121,23 +121,26 @@ async function scanCode() {
   code.innerHTML = '<b>Code: </b>' + result.value;
 }
 
-btnLogIn.onclick = () => {
-  liff.login();
+// btnLogIn.onclick = () => {
+//   liff.login();
+// };
+
+// btnLogOut.onclick = () => {
+//   liff.logout();
+//   window.location.reload();
+// };
+
+btnLink.onclick = () => {
+  sendMsg('Link User');
 };
 
-btnLogOut.onclick = () => {
-  liff.logout();
-  window.location.reload();
+btnUnlink.onclick = () => {
+  sendMsg('Unlink User');
 };
+// btnShare.onclick = () => {
+//   shareMsg();
+// };
 
-btnSend.onclick = () => {
-  sendMsg();
-};
-
-btnShare.onclick = () => {
-  shareMsg();
-};
-
-btnScanCode.onclick = () => {
-  scanCode();
-};
+// btnScanCode.onclick = () => {
+//   scanCode();
+// };
