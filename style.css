@@ -1,19 +1,30 @@
 body {
-  margin: 20px
+  margin: 20px;
 }
 
 button {
-  display: none;
+  background-color: #8bd5ee;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  /* display: none;
   width: 100%;
   padding: 8px 0;
   margin: 8px auto;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  border-radius: 8px;
+  border-radius: 8px; */
 }
 
 p {
-  border-bottom: 1px dashed #ddd
+  border-bottom: 1px dashed #ddd;
 }
 
 #pictureUrl {
@@ -33,7 +44,8 @@ p {
   border-radius: 256px;
 }
 
-#accessToken, #utouId {
+#accessToken,
+#utouId {
   display: block;
-  overflow: auto
+  overflow: auto;
 }

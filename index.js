@@ -18,63 +18,32 @@ const email = document.getElementById('email');
 const userId = document.getElementById('userId');
 const pictureUrl = document.getElementById('pictureUrl');
 const displayName = document.getElementById('displayName');
-const statusMessage = document.getElementById('statusMessage');
+// const statusMessage = document.getElementById('statusMessage');
 
 // QR element
 const code = document.getElementById('code');
 const friendShip = document.getElementById('friendShip');
-var lineResponseMessageS = [
-  {
-    type: 'bubble',
-    body: {
-      type: 'box',
-      layout: 'horizontal',
-      contents: [
-        {
-          type: 'text',
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          wrap: true,
-          color: '#ff0000',
-          flex: 2,
-        },
-        {
-          type: 'text',
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          wrap: true,
-          color: '#0000ff',
-          flex: 3,
-        },
-      ],
-    },
-  },
-];
 async function main() {
   // Initialize LIFF app)
   await liff.init({ liffId: '2000141235-kLKnmg5M' });
   // Try a LIFF function
   switch (liff.getOS()) {
     case 'android':
-      body.style.backgroundColor = '#d1f5d3';
+      body.style.backgroundColor = '#F0FBFF';
       break;
     case 'ios':
-      body.style.backgroundColor = '#eeeeee';
+      body.style.backgroundColor = '#F0FBFF';
       break;
   }
   getUserProfile();
   if (!liff.isInClient()) {
     if (liff.isLoggedIn()) {
-      btnLogIn.style.display = 'none';
-      btnLogOut.style.display = 'block';
-      btnShare.style.display = 'block';
       getUserProfile();
     } else {
-      btnLogIn.style.display = 'block';
-      btnLogOut.style.display = 'none';
+      liff.login();
     }
   } else {
-    btnSend.style.display = 'block';
-    btnShare.style.display = 'block';
-    btnScanCode.style.display = 'block';
+    btnLink.style.display = 'block';
     getUserProfile();
   }
 }
@@ -102,7 +71,8 @@ async function sendMsg(MessageType) {
       },
     ]);
     // await liff.sendMessages(lineResponseMessageS);
-    alert('Message sent');
+    // alert('Message sent');
+    liff.closeWindow();
   }
 }
 
@@ -134,9 +104,9 @@ btnLink.onclick = () => {
   sendMsg('Link User');
 };
 
-btnUnlink.onclick = () => {
-  sendMsg('Unlink User');
-};
+// btnUnlink.onclick = () => {
+//   sendMsg('Unlink User');
+// };
 // btnShare.onclick = () => {
 //   shareMsg();
 // };
